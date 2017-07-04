@@ -31,18 +31,22 @@ class LinkedList(object):
         self.length += 1
 
     def remove_first(self):
+        to_return = self.head
         if self.head:
             self.head = self.head.next
         else:
             self.head = None
         self.length -= 1
+        return to_return
 
     def remove_last(self):
         current = self.head
         while current.next.next:
             current = current.next
+        to_return  = current.next
         current.next = None
         self.length -= 1
+        return to_return
 
     def remove(self, data):
         current = self.head
@@ -54,10 +58,11 @@ class LinkedList(object):
                 else:
                     self.head = None
                 self.length -= 1
-                return
+                return current
             prev = current
             current = current.next
         print('item not found')
+        return None
 
     def get_length(self):
         return self.length  
@@ -67,6 +72,12 @@ class LinkedList(object):
         while current:
             print(current.data)
             current = current.next
+
+    def peekLast(self):
+        current = self.head
+        while current.next:
+            current = current.next
+        return current
 
 
 def main():
